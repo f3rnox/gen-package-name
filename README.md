@@ -1,6 +1,7 @@
 # gen-package-name
 
-CLI utility to generate npm package name ideas and check their availability in the npm registry.
+CLI utility to generate npm package name ideas and check their
+availability in the npm registry.
 
 ## Features
 

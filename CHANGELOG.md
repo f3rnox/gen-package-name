@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/f3rnox/gen-package-name/compare/v0.0.5...v0.0.6) (2026-04-22)
+
+
+### Features
+
+* add tests ([2b3c399](https://github.com/f3rnox/gen-package-name/commit/2b3c399191f7da1191eeda260e771f619b56d5f7))
+
+
+### Bug Fixes
+
+* hook up tests ([7c03bc6](https://github.com/f3rnox/gen-package-name/commit/7c03bc67f180b6f599617f8b09c8203ca5d88564))
+
 ### [0.0.5](https://github.com/f3rnox/gen-package-name/compare/v0.0.4...v0.0.5) (2026-04-22)
 
 

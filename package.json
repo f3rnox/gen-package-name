@@ -60,7 +60,7 @@
     "serve:coverage": "http-server ./coverage",
     "serve:docs": "http-server ./docs",
     "start": "tsx src/index.ts",
-    "test": "NODE_PATH=./src NODE_ENV=test vitest",
+    "test": "NODE_PATH=./src NODE_ENV=test vitest --run",
     "update-deps": "updates -u -g -c",
     "update-version": "standard-version -a"
   },

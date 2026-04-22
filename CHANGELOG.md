@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/f3rnox/gen-package-name/compare/v0.0.2...v0.0.3) (2026-04-22)
+
+
+### Bug Fixes
+
+* build for publish, update docs ([3807453](https://github.com/f3rnox/gen-package-name/commit/3807453e65cce7d5683a199d8f04083d905db527))
+
 ### 0.0.2 (2026-04-22)
 
 

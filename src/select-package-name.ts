@@ -6,6 +6,11 @@ import {
   GENERATED_PACKAGE_COUNT,
   REGENERATE_PACKAGE_SET
 } from './constants'
+import {
+  buildPackageChoice,
+  type PackageChoice
+} from './build-package-choice'
+import { checkPackageNamesAvailability } from './check-package-names-availability'
 import { extractNameKeywords } from './extract-name-keywords'
 import { generatePackageNames } from './generate-package-names'
 import { promptPackageDescription } from './prompt-package-description'
@@ -14,7 +19,12 @@ interface SelectPackagePromptAnswer {
   selectedPackage: string
 }
 
-export const selectPackageName = async (): Promise<string | null> => {
+export interface SelectedPackage {
+  name: string
+  isAvailable: boolean
+}
+
+export const selectPackageName = async (): Promise<SelectedPackage | null> => {
   const description: string = await promptPackageDescription()
   const keywords: string[] = extractNameKeywords(description)
 
@@ -27,7 +37,12 @@ export const selectPackageName = async (): Promise<string | null> => {
       GENERATED_PACKAGE_COUNT,
       keywords
     )
-    console.log(chalk.bold.blue('\nGenerated package names\n'))
+
+    console.log(chalk.magenta('\nChecking npm availability...\n'))
+    const availability: Map<string, boolean> =
+      await checkPackageNamesAvailability(packageNames)
+
+    console.log(chalk.bold.blue('Generated package names\n'))
 
     let selectedPackage: string
     try {
@@ -39,10 +54,11 @@ export const selectPackageName = async (): Promise<string | null> => {
             message: 'Select a package:',
             choices: [
               ...packageNames.map(
-                (name: string): { name: string; value: string } => ({
-                  name,
-                  value: name
-                })
+                (packageName: string): PackageChoice =>
+                  buildPackageChoice(
+                    packageName,
+                    availability.get(packageName) ?? false
+                  )
               ),
               {
                 name: 'Generate a new set of package names',
@@ -69,7 +85,10 @@ export const selectPackageName = async (): Promise<string | null> => {
     }
 
     if (selectedPackage !== REGENERATE_PACKAGE_SET) {
-      return selectedPackage
+      return {
+        name: selectedPackage,
+        isAvailable: availability.get(selectedPackage) ?? false
+      }
     }
 
     console.log(chalk.yellow('\nGenerating a new set...\n'))

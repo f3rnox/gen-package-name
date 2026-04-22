@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import packageJson from 'package-json'
 
-import { isPackageMissingError } from './is-package-missing-error.js'
+import { isPackageMissingError } from './is-package-missing-error'
 
 export interface PackageInfo {
   name?: string

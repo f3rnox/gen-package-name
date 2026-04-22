@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/f3rnox/gen-package-name/compare/v0.0.6...v0.0.7) (2026-04-22)
+
+
+### Bug Fixes
+
+* pass --run to vitest ([1544092](https://github.com/f3rnox/gen-package-name/commit/1544092aede5920e8d4e8003e595c4b48b01ecbc))
+
 ### [0.0.6](https://github.com/f3rnox/gen-package-name/compare/v0.0.5...v0.0.6) (2026-04-22)
 
 

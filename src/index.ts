@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { printRunError } from './print-run-error'
 import { runPackageSelectionFlow } from './run-package-selection-flow'
 

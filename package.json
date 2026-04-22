@@ -1,20 +1,15 @@
 {
   "name": "gen-package-name",
-  "type": "module",
-  "version": "0.0.8",
-  "private": true,
-  "description": "A template repository for Node.JS TypeScript libraries",
+  "type": "commonjs",
+  "version": "0.0.1",
+  "description": "Package Name Generator for Node.JS",
   "keywords": [
-    "typescript",
-    "template",
-    "boilerplate",
-    "markdownlint",
-    "prettier",
-    "commitlint",
-    "library",
-    "vitest",
-    "eslint",
-    "typedoc"
+    "npm",
+    "package",
+    "name",
+    "generator",
+    "cli",
+    "tool"
   ],
   "homepage": "https://github.com/f3rnox/gen-package-name",
   "bugs": {
@@ -28,6 +23,21 @@
   "author": "Cris Mihalache <f3rnox42@gmail.com>",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "bin": {
+    "gen-package-name": "dist/index.js"
+  },
   "scripts": {
     "build": "pnpm build:ts && pnpm build:docs",
     "build:docs": "typedoc --out ./docs ./src && cp LICENSE.md docs/LICENSE.md && cp CHANGELOG.md docs/CHANGELOG.md",

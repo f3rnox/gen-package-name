@@ -5,6 +5,14 @@ interface DescriptionAnswer {
   description: string
 }
 
+/**
+ * Returns the package description, either from a preset value or by prompting
+ * the user interactively. The returned string is trimmed; an empty string
+ * indicates the user chose to skip the prompt (or aborted it).
+ *
+ * @param {string|null} [preset=null] Description from CLI; bypasses the prompt when non-null.
+ * @returns {Promise<string>} Trimmed description, possibly empty.
+ */
 export const promptPackageDescription = async (
   preset: string | null = null
 ): Promise<string> => {

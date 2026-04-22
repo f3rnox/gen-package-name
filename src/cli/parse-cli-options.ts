@@ -18,6 +18,16 @@ interface RawCliOptions {
   color: boolean
 }
 
+/**
+ * Parses `process.argv`-style arguments into a normalized `CliOptions` object
+ * using commander. Registers all supported flags, help examples, and
+ * validators, then converts commander's raw result (which uses `undefined`
+ * for missing optional strings) into the stricter null-using shape consumed
+ * by the rest of the program.
+ *
+ * @param {string[]} argv The argv array to parse (typically `process.argv`).
+ * @returns {import('./cli-options').CliOptions} Resolved CLI options.
+ */
 export const parseCliOptions = (argv: string[]): CliOptions => {
   const program: Command = new Command()
 

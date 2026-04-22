@@ -2,6 +2,14 @@ import chalk from 'chalk'
 
 import { checkPackageAvailability } from '../npm/check-package-availability'
 
+/**
+ * Checks whether a single package name is available on npm and prints the
+ * result. Emits JSON when `asJson` is true, otherwise a colored status line.
+ *
+ * @param {string} packageName The npm package name to check.
+ * @param {boolean} asJson Whether to emit machine-readable JSON instead of prose.
+ * @returns {Promise<number>} `0` when the package is available, `1` when taken.
+ */
 export const runCheckCommand = async (
   packageName: string,
   asJson: boolean

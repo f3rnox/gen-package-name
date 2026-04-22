@@ -10,6 +10,15 @@ export interface PackageInfo {
   homepage?: string
 }
 
+/**
+ * Fetches full registry metadata for `selectedPackage`. Returns `null` and
+ * prints an availability/status message when the package does not exist or
+ * has incomplete metadata; all other errors are rethrown.
+ *
+ * @param {string} selectedPackage The npm package name to fetch metadata for.
+ * @returns {Promise<PackageInfo|null>} Metadata, or `null` when unavailable or
+ *   incomplete.
+ */
 export const fetchPackageInfo = async (
   selectedPackage: string
 ): Promise<PackageInfo | null> => {

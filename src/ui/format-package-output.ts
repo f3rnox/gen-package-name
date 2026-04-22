@@ -7,6 +7,14 @@ export interface PackageOutput {
   homepage?: string
 }
 
+/**
+ * Formats package metadata as an aligned two-column "label  value" block,
+ * using chalk for colored label/value pairs. Missing description or homepage
+ * values are rendered as explicit placeholders.
+ *
+ * @param {PackageOutput} packageInfo The package fields to render.
+ * @returns {string} The formatted multi-line string.
+ */
 export const formatPackageOutput = (packageInfo: PackageOutput): string => {
   const rows: [string, string][] = [
     ['Name', packageInfo.name],

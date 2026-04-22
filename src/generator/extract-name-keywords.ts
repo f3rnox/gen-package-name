@@ -66,6 +66,15 @@ const STOP_WORDS = new Set<string>([
   'over'
 ])
 
+/**
+ * Extracts up to eight keyword seeds from a free-form package description.
+ * Splits on common punctuation and whitespace, lowercases, removes stop words,
+ * enforces a simple alphanumeric shape, and deduplicates while preserving
+ * insertion order.
+ *
+ * @param {string} description Raw description text supplied by the user.
+ * @returns {string[]} Ordered, deduplicated list of up to eight keyword seeds.
+ */
 export const extractNameKeywords = (description: string): string[] =>
   [
     ...new Set<string>(

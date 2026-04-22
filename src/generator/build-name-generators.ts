@@ -3,6 +3,17 @@ import { sample } from './sample'
 
 type NameGenerator = () => string
 
+/**
+ * Builds the pool of name generators used by `generatePackageNames`. The base
+ * set combines adjectives, verbs, nouns, and package-type suffixes; when
+ * keywords are provided, additional generators are appended to ensure at
+ * least one keyword appears in the produced name, and a keyword-pair
+ * generator is added when two or more keywords are supplied.
+ *
+ * @param {string[]} keywords Optional keyword seeds to weave into generated names.
+ * @returns {Array<() => string>} Parameterless generator functions, each producing
+ *   a candidate package name.
+ */
 export const buildNameGenerators = (keywords: string[]): NameGenerator[] => {
   // Merge user keywords into the noun pool so all existing patterns also use them
   const nouns: string[] = keywords.length > 0 ? [...keywords, ...NOUNS] : NOUNS

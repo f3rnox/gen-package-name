@@ -10,6 +10,13 @@ import { runNonInteractiveFlow } from './commands/run-non-interactive-flow'
 import { runPackageSelectionFlow } from './commands/run-package-selection-flow'
 import { printRunError } from './ui/print-run-error'
 
+/**
+ * CLI entrypoint. Parses command-line arguments and dispatches to the
+ * appropriate command handler (check, info, non-interactive, or the default
+ * interactive package selection flow).
+ *
+ * @returns {Promise<number>} Process exit code to propagate to the shell.
+ */
 const main = async (): Promise<number> => {
   const options: CliOptions = parseCliOptions(process.argv)
 

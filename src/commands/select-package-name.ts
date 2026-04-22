@@ -24,6 +24,17 @@ export interface SelectedPackage {
   isAvailable: boolean
 }
 
+/**
+ * Drives the interactive package name selection loop. Resolves keywords (from
+ * CLI options or a prompted description), generates a batch of candidate
+ * names, checks their availability, and asks the user to pick one or
+ * regenerate. Loops until the user selects a name or exits.
+ *
+ * @param {import('../cli/cli-options').CliOptions} options Resolved CLI options
+ *   controlling generation and prompting.
+ * @returns {Promise<SelectedPackage|null>} Selected package and availability, or
+ *   `null` if the user exited the prompt.
+ */
 export const selectPackageName = async (
   options: CliOptions
 ): Promise<SelectedPackage | null> => {

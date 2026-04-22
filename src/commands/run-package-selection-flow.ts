@@ -5,6 +5,15 @@ import { fetchPackageInfo } from '../npm/fetch-package-info'
 import { printPackageDetails } from '../ui/print-package-details'
 import { selectPackageName, type SelectedPackage } from './select-package-name'
 
+/**
+ * Runs the default interactive flow: prompts the user to pick a generated
+ * package name, then either confirms availability or fetches and prints
+ * registry details for the chosen (taken) name.
+ *
+ * @param {import('../cli/cli-options').CliOptions} options Resolved CLI options
+ *   controlling generation and prompting.
+ * @returns {Promise<void>}
+ */
 export const runPackageSelectionFlow = async (
   options: CliOptions
 ): Promise<void> => {

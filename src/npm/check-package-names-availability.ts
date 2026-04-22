@@ -1,5 +1,13 @@
 import { checkPackageAvailability } from './check-package-availability'
 
+/**
+ * Checks a batch of package names for availability in parallel and returns a
+ * map from name to availability (`true` when available on npm).
+ *
+ * @param {string[]} packageNames The npm package names to check.
+ * @returns {Promise<Map<string, boolean>>} Map keyed by input names; values are
+ *   availability flags.
+ */
 export const checkPackageNamesAvailability = async (
   packageNames: string[]
 ): Promise<Map<string, boolean>> => {

@@ -1,19 +1,19 @@
 import inquirer from 'inquirer'
 import chalk from 'chalk'
 
+import type { CliOptions } from '../cli/cli-options'
 import {
   EXIT_PACKAGE_SELECTION,
-  GENERATED_PACKAGE_COUNT,
   REGENERATE_PACKAGE_SET
-} from './constants'
+} from '../generator/constants'
+import { generatePackageNames } from '../generator/generate-package-names'
+import { resolveKeywords } from '../generator/resolve-keywords'
+import { checkPackageNamesAvailability } from '../npm/check-package-names-availability'
 import {
   buildPackageChoice,
   type PackageChoice
-} from './build-package-choice'
-import { checkPackageNamesAvailability } from './check-package-names-availability'
-import { extractNameKeywords } from './extract-name-keywords'
-import { generatePackageNames } from './generate-package-names'
-import { promptPackageDescription } from './prompt-package-description'
+} from '../ui/build-package-choice'
+import { promptPackageDescription } from '../ui/prompt-package-description'
 
 interface SelectPackagePromptAnswer {
   selectedPackage: string
@@ -24,19 +24,31 @@ export interface SelectedPackage {
   isAvailable: boolean
 }
 
-export const selectPackageName = async (): Promise<SelectedPackage | null> => {
-  const description: string = await promptPackageDescription()
-  const keywords: string[] = extractNameKeywords(description)
+export const selectPackageName = async (
+  options: CliOptions
+): Promise<SelectedPackage | null> => {
+  const presetKeywords: string[] =
+    options.keywords !== null ? options.keywords : []
+
+  let keywords: string[] = presetKeywords
+
+  if (keywords.length === 0) {
+    const description: string = await promptPackageDescription(
+      options.description
+    )
+
+    keywords = resolveKeywords({
+      ...options,
+      description: description.length > 0 ? description : null
+    })
+  }
 
   if (keywords.length > 0) {
     console.log(chalk.dim(`\nUsing keywords: ${keywords.join(', ')}\n`))
   }
 
   while (true) {
-    const packageNames: string[] = generatePackageNames(
-      GENERATED_PACKAGE_COUNT,
-      keywords
-    )
+    const packageNames: string[] = generatePackageNames(options.count, keywords)
 
     console.log(chalk.magenta('\nChecking npm availability...\n'))
     const availability: Map<string, boolean> =

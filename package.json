@@ -66,10 +66,9 @@
   },
   "dependencies": {
     "chalk": "^5.6.2",
+    "commander": "^14.0.3",
     "inquirer": "^13.4.2",
-    "npm-api": "^1.0.1",
-    "package-json": "^10.0.1",
-    "tslib": "^2.8.1"
+    "package-json": "^10.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
@@ -92,6 +91,7 @@
     "remark": "^15.0.1",
     "standard-version": "^9.5.0",
     "ts-node": "^10.9.2",
+    "tslib": "^2.8.1",
     "tsx": "^4.21.0",
     "typedoc": "^0.28.18",
     "typescript": "^6.0.2",

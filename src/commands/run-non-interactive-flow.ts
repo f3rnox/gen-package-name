@@ -1,0 +1,36 @@
+import type { CliOptions } from '../cli/cli-options'
+import { generatePackageNames } from '../generator/generate-package-names'
+import { resolveKeywords } from '../generator/resolve-keywords'
+import { checkPackageNamesAvailability } from '../npm/check-package-names-availability'
+import {
+  printGeneratedNames,
+  type GeneratedNameEntry
+} from '../ui/print-generated-names'
+
+export const runNonInteractiveFlow = async (
+  options: CliOptions
+): Promise<number> => {
+  const keywords: string[] = resolveKeywords(options)
+  const packageNames: string[] = generatePackageNames(options.count, keywords)
+  const availability: Map<string, boolean> =
+    await checkPackageNamesAvailability(packageNames)
+
+  const entries: GeneratedNameEntry[] = packageNames.map(
+    (name: string): GeneratedNameEntry => ({
+      name,
+      available: availability.get(name) ?? false
+    })
+  )
+
+  const filtered: GeneratedNameEntry[] = options.availableOnly
+    ? entries.filter((entry: GeneratedNameEntry): boolean => entry.available)
+    : entries
+
+  printGeneratedNames(filtered, options.json)
+
+  if (options.availableOnly && filtered.length === 0) {
+    return 1
+  }
+
+  return 0
+}

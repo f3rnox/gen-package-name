@@ -5,7 +5,13 @@ interface DescriptionAnswer {
   description: string
 }
 
-export const promptPackageDescription = async (): Promise<string> => {
+export const promptPackageDescription = async (
+  preset: string | null = null
+): Promise<string> => {
+  if (preset !== null) {
+    return preset.trim()
+  }
+
   console.log(chalk.bold.blue('\nWhat does your package do?\n'))
 
   try {

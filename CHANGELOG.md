@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.2 (2026-04-22)
+
+
+### Features
+
+* fix build & build ([74e626a](https://github.com/f3rnox/gen-package-name/commit/74e626a650c5e52467eafea14311d58d1c7009b6))
+* initial commit ([e670718](https://github.com/f3rnox/gen-package-name/commit/e6707181ff1a595625b27a6b1debd9385cc1e6c6))
+* update manifest, make executable from CLI ([af5fe9e](https://github.com/f3rnox/gen-package-name/commit/af5fe9e3e06e1cd5ecfc8a7cc87453547cfe1780))
+* update. ([5fc1725](https://github.com/f3rnox/gen-package-name/commit/5fc1725c56541ab2e9e026117cabeebf0ae8d1f5))
+
 ### [0.0.8](https://github.com/f3rno64/node-ts-lib-template/compare/v0.0.7...v0.0.8) (2024-02-12)
 
 

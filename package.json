@@ -1,7 +1,7 @@
 {
   "name": "gen-package-name",
   "type": "commonjs",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Package Name Generator for Node.JS",
   "keywords": [
     "npm",

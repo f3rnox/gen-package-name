@@ -6,11 +6,10 @@ import {
   REGENERATE_PACKAGE_SET
 } from '../generator/constants'
 import { generatePackageNames } from '../generator/generate-package-names'
-import { resolveKeywords } from '../generator/resolve-keywords'
 import { checkPackageNamesAvailability } from '../npm/check-package-names-availability'
 import type { CliOptions, PackageChoice } from '../types'
 import { buildPackageChoice } from '../ui/build-package-choice'
-import { promptPackageDescription } from '../ui/prompt-package-description'
+import { getKeywordsForPackageSelection } from './get-keywords-for-package-selection'
 
 interface SelectPackagePromptAnswer {
   selectedPackage: string
@@ -35,25 +34,7 @@ export interface SelectedPackage {
 export const selectPackageName = async (
   options: CliOptions
 ): Promise<SelectedPackage | null> => {
-  const presetKeywords: string[] =
-    options.keywords !== null ? options.keywords : []
-
-  let keywords: string[] = presetKeywords
-
-  if (keywords.length === 0) {
-    const description: string = await promptPackageDescription(
-      options.description
-    )
-
-    keywords = resolveKeywords({
-      ...options,
-      description: description.length > 0 ? description : null
-    })
-  }
-
-  if (keywords.length > 0) {
-    console.log(chalk.dim(`\nUsing keywords: ${keywords.join(', ')}\n`))
-  }
+  const keywords: string[] = await getKeywordsForPackageSelection(options)
 
   while (true) {
     const packageNames: string[] = generatePackageNames(options.count, keywords)

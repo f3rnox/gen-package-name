@@ -2,7 +2,7 @@
 
 import chalk from 'chalk'
 
-import type { CliOptions } from './cli/cli-options'
+import type { CliOptions } from './types'
 import { parseCliOptions } from './cli/parse-cli-options'
 import { runCheckCommand } from './commands/run-check-command'
 import { runInfoCommand } from './commands/run-info-command'

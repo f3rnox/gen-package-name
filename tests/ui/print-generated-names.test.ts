@@ -2,10 +2,8 @@ import { afterEach, beforeEach, describe, it, vi } from 'vitest'
 import { expect } from 'chai'
 import chalk, { type ChalkInstance } from 'chalk'
 
-import {
-  printGeneratedNames,
-  type GeneratedNameEntry
-} from '../../src/ui/print-generated-names'
+import type { GeneratedNameEntry } from '../../src/types'
+import { printGeneratedNames } from '../../src/ui/print-generated-names'
 
 describe('printGeneratedNames', (): void => {
   const originalLevel: ChalkInstance['level'] = chalk.level

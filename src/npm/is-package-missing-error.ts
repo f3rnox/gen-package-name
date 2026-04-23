@@ -1,7 +1,4 @@
-interface PackageLookupError {
-  statusCode?: number
-  message?: string
-}
+import type { PackageLookupError } from '../types'
 
 /**
  * Determines whether a caught error from an npm registry lookup indicates

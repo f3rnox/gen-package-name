@@ -1,14 +1,8 @@
 import chalk from 'chalk'
 import packageJson from 'package-json'
 
+import type { PackageInfo } from '../types'
 import { isPackageMissingError } from './is-package-missing-error'
-
-export interface PackageInfo {
-  name?: string
-  version?: string
-  description?: string
-  homepage?: string
-}
 
 /**
  * Fetches full registry metadata for `selectedPackage`. Returns `null` and

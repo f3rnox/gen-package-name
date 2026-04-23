@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest'
 import { expect } from 'chai'
 
-import type { CliOptions } from '../../src/cli/cli-options'
+import type { CliOptions } from '../../src/types'
 import { parseCliOptions } from '../../src/cli/parse-cli-options'
 import { GENERATED_PACKAGE_COUNT } from '../../src/generator/constants'
 

@@ -1,11 +1,6 @@
 import chalk from 'chalk'
 
-export interface PackageOutput {
-  name: string
-  version: string
-  description?: string
-  homepage?: string
-}
+import type { PackageOutput } from '../types'
 
 /**
  * Formats package metadata as an aligned two-column "label  value" block,

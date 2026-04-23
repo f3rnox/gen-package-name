@@ -1,7 +1,7 @@
 import { Command } from 'commander'
 
 import { GENERATED_PACKAGE_COUNT } from '../generator/constants'
-import type { CliOptions } from './cli-options'
+import type { CliOptions } from '../types'
 import { parseCountOption } from './parse-count-option'
 import { parseKeywordList } from './parse-keyword-list'
 import { readPackageVersion } from './read-package-version'
@@ -26,7 +26,7 @@ interface RawCliOptions {
  * by the rest of the program.
  *
  * @param {string[]} argv The argv array to parse (typically `process.argv`).
- * @returns {import('./cli-options').CliOptions} Resolved CLI options.
+ * @returns {import('../types').CliOptions} Resolved CLI options.
  */
 export const parseCliOptions = (argv: string[]): CliOptions => {
   const program: Command = new Command()

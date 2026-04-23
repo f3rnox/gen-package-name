@@ -2,10 +2,8 @@ import { afterEach, beforeEach, describe, it } from 'vitest'
 import { expect } from 'chai'
 import chalk, { type ChalkInstance } from 'chalk'
 
-import {
-  buildPackageChoice,
-  type PackageChoice
-} from '../../src/ui/build-package-choice'
+import { buildPackageChoice } from '../../src/ui/build-package-choice'
+import type { PackageChoice } from '../../src/types'
 
 describe('buildPackageChoice', (): void => {
   const originalLevel: ChalkInstance['level'] = chalk.level

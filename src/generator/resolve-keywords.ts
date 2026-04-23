@@ -1,4 +1,4 @@
-import type { CliOptions } from '../cli/cli-options'
+import type { CliOptions } from '../types'
 import { extractNameKeywords } from './extract-name-keywords'
 
 /**
@@ -6,7 +6,7 @@ import { extractNameKeywords } from './extract-name-keywords'
  * Explicit `--keywords` take precedence over `--description`; when both are
  * absent an empty list is returned.
  *
- * @param {import('../cli/cli-options').CliOptions} options Resolved CLI options.
+ * @param {import('../types').CliOptions} options Resolved CLI options.
  * @returns {string[]} Keyword seeds, possibly empty.
  */
 export const resolveKeywords = (options: CliOptions): string[] => {

@@ -1,7 +1,6 @@
 import inquirer from 'inquirer'
 import chalk from 'chalk'
 
-import type { CliOptions } from '../cli/cli-options'
 import {
   EXIT_PACKAGE_SELECTION,
   REGENERATE_PACKAGE_SET
@@ -9,10 +8,8 @@ import {
 import { generatePackageNames } from '../generator/generate-package-names'
 import { resolveKeywords } from '../generator/resolve-keywords'
 import { checkPackageNamesAvailability } from '../npm/check-package-names-availability'
-import {
-  buildPackageChoice,
-  type PackageChoice
-} from '../ui/build-package-choice'
+import type { CliOptions, PackageChoice } from '../types'
+import { buildPackageChoice } from '../ui/build-package-choice'
 import { promptPackageDescription } from '../ui/prompt-package-description'
 
 interface SelectPackagePromptAnswer {
@@ -30,7 +27,7 @@ export interface SelectedPackage {
  * names, checks their availability, and asks the user to pick one or
  * regenerate. Loops until the user selects a name or exits.
  *
- * @param {import('../cli/cli-options').CliOptions} options Resolved CLI options
+ * @param {import('../types').CliOptions} options Resolved CLI options
  *   controlling generation and prompting.
  * @returns {Promise<SelectedPackage|null>} Selected package and availability, or
  *   `null` if the user exited the prompt.

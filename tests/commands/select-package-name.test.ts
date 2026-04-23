@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, it, vi } from 'vitest'
 import { expect } from 'chai'
 import chalk, { type ChalkInstance } from 'chalk'
 
-import type { CliOptions } from '../../src/cli/cli-options'
+import type { CliOptions } from '../../src/types'
 import {
   EXIT_PACKAGE_SELECTION,
   REGENERATE_PACKAGE_SET

@@ -1,9 +1,6 @@
 import chalk from 'chalk'
 
-export interface GeneratedNameEntry {
-  name: string
-  available: boolean
-}
+import type { GeneratedNameEntry } from '../types'
 
 /**
  * Prints a batch of generated package names with their availability status.

@@ -1,18 +1,15 @@
-import type { CliOptions } from '../cli/cli-options'
 import { generatePackageNames } from '../generator/generate-package-names'
 import { resolveKeywords } from '../generator/resolve-keywords'
 import { checkPackageNamesAvailability } from '../npm/check-package-names-availability'
-import {
-  printGeneratedNames,
-  type GeneratedNameEntry
-} from '../ui/print-generated-names'
+import type { CliOptions, GeneratedNameEntry } from '../types'
+import { printGeneratedNames } from '../ui/print-generated-names'
 
 /**
  * Runs the non-interactive flow: generates a batch of candidate package names,
  * checks their availability on npm, and prints the results (optionally filtered
  * to only available names and/or emitted as JSON).
  *
- * @param {import('../cli/cli-options').CliOptions} options Resolved CLI options
+ * @param {import('../types').CliOptions} options Resolved CLI options
  *   controlling generation and output.
  * @returns {Promise<number>} `0` on success, or `1` when `availableOnly` is set
  *   and no available names were produced.

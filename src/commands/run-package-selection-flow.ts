@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import type { CliOptions } from '../cli/cli-options'
+import type { CliOptions } from '../types'
 import { fetchPackageInfo } from '../npm/fetch-package-info'
 import { printPackageDetails } from '../ui/print-package-details'
 import { selectPackageName, type SelectedPackage } from './select-package-name'
@@ -10,7 +10,7 @@ import { selectPackageName, type SelectedPackage } from './select-package-name'
  * package name, then either confirms availability or fetches and prints
  * registry details for the chosen (taken) name.
  *
- * @param {import('../cli/cli-options').CliOptions} options Resolved CLI options
+ * @param {import('../types').CliOptions} options Resolved CLI options
  *   controlling generation and prompting.
  * @returns {Promise<void>}
  */

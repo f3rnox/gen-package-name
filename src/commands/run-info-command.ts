@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 
-import { fetchPackageInfo, type PackageInfo } from '../npm/fetch-package-info'
+import { fetchPackageInfo } from '../npm/fetch-package-info'
+import type { PackageInfo } from '../types'
 import { printPackageDetails } from '../ui/print-package-details'
 
 /**

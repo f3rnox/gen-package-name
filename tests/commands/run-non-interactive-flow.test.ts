@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, it, vi } from 'vitest'
 import { expect } from 'chai'
 import chalk, { type ChalkInstance } from 'chalk'
 
-import type { CliOptions } from '../../src/cli/cli-options'
+import type { CliOptions } from '../../src/types'
 import { runNonInteractiveFlow } from '../../src/commands/run-non-interactive-flow'
 
 const mockResponse = (status: number): Response =>

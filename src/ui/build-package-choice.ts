@@ -1,9 +1,6 @@
 import chalk from 'chalk'
 
-export interface PackageChoice {
-  name: string
-  value: string
-}
+import type { PackageChoice } from '../types'
 
 /**
  * Builds an inquirer-compatible choice entry for a generated package name,

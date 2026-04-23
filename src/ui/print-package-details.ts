@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-import type { PackageInfo } from '../npm/fetch-package-info'
+import type { PackageInfo } from '../types'
 import { formatPackageOutput } from './format-package-output'
 
 /**
@@ -8,7 +8,7 @@ import { formatPackageOutput } from './format-package-output'
  * (name, version, description, homepage) with missing fields substituted by
  * empty strings before formatting.
  *
- * @param {import('../npm/fetch-package-info').PackageInfo} packageInfo Registry
+ * @param {import('../types').PackageInfo} packageInfo Registry
  *   metadata as returned by `fetchPackageInfo`.
  * @returns {void}
  */

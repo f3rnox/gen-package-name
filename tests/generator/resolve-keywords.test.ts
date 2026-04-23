@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest'
 import { expect } from 'chai'
 
-import type { CliOptions } from '../../src/cli/cli-options'
+import type { CliOptions } from '../../src/types'
 import { resolveKeywords } from '../../src/generator/resolve-keywords'
 
 const buildOptions = (overrides: Partial<CliOptions> = {}): CliOptions => ({

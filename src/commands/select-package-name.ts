@@ -15,6 +15,10 @@ interface SelectPackagePromptAnswer {
   selectedPackage: string
 }
 
+interface PromptKeypress {
+  name?: string
+}
+
 export interface SelectedPackage {
   name: string
   isAvailable: boolean
@@ -46,39 +50,54 @@ export const selectPackageName = async (
     console.log(chalk.bold.blue('Generated package names\n'))
 
     let selectedPackage: string
-    try {
-      const promptAnswer: SelectPackagePromptAnswer =
-        await inquirer.prompt<SelectPackagePromptAnswer>([
+    const promptSession: Promise<SelectPackagePromptAnswer> & {
+      ui: { close: () => void }
+    } = inquirer.prompt<SelectPackagePromptAnswer>([
+      {
+        type: 'rawlist',
+        name: 'selectedPackage',
+        message: 'Select a package:',
+        choices: [
+          ...packageNames.map(
+            (packageName: string): PackageChoice =>
+              buildPackageChoice(
+                packageName,
+                availability.get(packageName) ?? false
+              )
+          ),
           {
-            type: 'rawlist',
-            name: 'selectedPackage',
-            message: 'Select a package:',
-            choices: [
-              ...packageNames.map(
-                (packageName: string): PackageChoice =>
-                  buildPackageChoice(
-                    packageName,
-                    availability.get(packageName) ?? false
-                  )
-              ),
-              {
-                name: 'Generate a new set of package names',
-                value: REGENERATE_PACKAGE_SET
-              },
-              {
-                name: 'Exit',
-                value: EXIT_PACKAGE_SELECTION
-              }
-            ]
+            name: 'Generate a new set of package names',
+            value: REGENERATE_PACKAGE_SET
+          },
+          {
+            name: 'Exit',
+            value: EXIT_PACKAGE_SELECTION
           }
-        ])
+        ]
+      }
+    ])
+
+    const closePromptOnEscape = (_: string, key: PromptKeypress): void => {
+      if (key.name === 'escape') {
+        promptSession.ui.close()
+      }
+    }
+
+    process.stdin.on('keypress', closePromptOnEscape)
+    try {
+      const promptAnswer: SelectPackagePromptAnswer = await promptSession
       selectedPackage = promptAnswer.selectedPackage
     } catch (error: unknown) {
-      if (error instanceof Error && error.name === 'ExitPromptError') {
+      if (
+        error instanceof Error &&
+        (error.name === 'ExitPromptError' || error.name === 'AbortPromptError')
+      ) {
         return null
       }
 
       throw error
+    } finally {
+      process.stdin.off('keypress', closePromptOnEscape)
     }
 
     if (selectedPackage === EXIT_PACKAGE_SELECTION) {

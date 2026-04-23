@@ -120,6 +120,19 @@ describe('selectPackageName', (): void => {
     expect(result).to.equal(null)
   })
 
+  it('returns null when prompt is aborted (escape)', async (): Promise<void> => {
+    vi.spyOn(globalThis, 'fetch').mockResolvedValue(mockResponse(404))
+    const abortError: Error = new Error('aborted')
+    abortError.name = 'AbortPromptError'
+    promptMock.mockRejectedValueOnce(abortError)
+
+    const { selectPackageName } =
+      await import('../../src/commands/select-package-name')
+    const result = await selectPackageName(buildOptions({ keywords: ['a'] }))
+
+    expect(result).to.equal(null)
+  })
+
   it('rethrows unexpected prompt errors', async (): Promise<void> => {
     vi.spyOn(globalThis, 'fetch').mockResolvedValue(mockResponse(404))
     promptMock.mockRejectedValueOnce(new Error('boom'))
